@@ -51,7 +51,9 @@ class More extends Component {
           data={this.props.devices}
           renderItem={({item, index}) => <ButtonList key={index} name={item.name} lonPress={_=>{this.editName(item)}} ronPress={_=>{this.del(item)}} /> } />
         
-        {/* <Text onPress={this.linking} style={styles.linking}>《{I18n.t("privacy")}》</Text> */}
+        <Text onPress={this.linking} style={styles.linking}>
+          《{I18n.t("agreement")}{I18n.t("and")}{I18n.t("privacy")}》
+        </Text>
         
         <Modal isVisible={this.state.isVisible} 
           style={tool.flexCenter}
@@ -87,7 +89,8 @@ class More extends Component {
     )
   }
   linking = () => {
-    Linking.openURL("http://zzz.wx1108.com/privacy.html");
+    // Linking.openURL("http://zzz.wx1108.com/privacy.html");
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Agreement' }))
   }
   goBack = () => {
     this.props.dispatch(NavigationActions.back());
